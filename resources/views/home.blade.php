@@ -16,15 +16,16 @@
                                     <a href="#" class="font-bold text-[36px] leading-[45px] hover:underline transition-all duration-300">Selamat Datang di Website Resmi BUMDes Sebauk</a>
                                    
                                 </div>
-                               
+                                <p> Business</p>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
             
         </section>
-
+        <livewire:about.aboud-bumdes/>
          <livewire:article.article-new/> 
          <livewire:article.article-category/> 
 
