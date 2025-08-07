@@ -36,8 +36,6 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-m-exclamation-triangle')
                 ->color('danger')
                 ->url(route('filament.admin.resources.products.index')),
-
-
         ];
     }
 }

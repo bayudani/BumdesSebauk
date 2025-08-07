@@ -20,9 +20,12 @@ export default {
                 "maga-black": "#070707",
                 "maga-gray": "#6A7789",
                 "maga-orange": "#FF6B18",
+                "primary": "#0D5CD7",
+                "secondary": "#FFC736",
             },
         },
     },
 
     plugins: [forms],
 };
+
