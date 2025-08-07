@@ -7,12 +7,19 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './app/Livewire/**/*.php', // Dan ini juga penting buat komponen PHP
+
     ],
 
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                "maga-black": "#070707",
+                "maga-gray": "#6A7789",
+                "maga-orange": "#FF6B18",
             },
         },
     },
