@@ -14,7 +14,8 @@ new class extends Component
 
         $this->redirect('/', navigate: true);
     }
-}; ?>
+}; 
+?>
 
 <div>
 
@@ -26,9 +27,16 @@ new class extends Component
 
     <!-- TENGAH: Menu Navigasi besar, hitam, dan jarak lebih lebar -->
     <ul class="flex items-center gap-8 text-base font-semibold text-black">
-      <li class="hover:text-green-700 cursor-pointer">Home</li>
-      <li class="hover:text-green-700 cursor-pointer">Produk</li>
-      <li class="hover:text-green-700 cursor-pointer">Artikel</li>
+      <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('home')" :active="request()->routeIs('home')"
+                                class="hover:bg-secondary-50 dark:hover:bg-secondary-900/20 rounded-md transition-all duration-200"
+                                wire:navigate>{{ __('Home') }}</x-nav-link></li>
+      <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('Produk')" :active="request()->routeIs('Produk')"
+                                class="hover:bg-secondary-50 dark:hover:bg-secondary-900/20 rounded-md transition-all duration-200"
+                                wire:navigate>{{ __('Produk') }}</x-nav-link></li>
+      <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('articles')" :active="request()->routeIs('Berita')"
+                                class="hover:bg-secondary-50 dark:hover:bg-secondary-900/20 rounded-md transition-all duration-200"
+                                wire:navigate>{{ __('Berita') }}</x-nav-link></li>
+     
     </ul>
   </nav>
 </header>

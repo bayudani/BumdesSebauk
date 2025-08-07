@@ -37,8 +37,8 @@ class TransactionResource extends Resource
                     ->nullable()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('customer_phone')
-                    ->nullable()                
-                    ->maxLength(255),                   
+                    ->nullable()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('quantity')
                     ->default(1)
                     ->numeric()
@@ -51,9 +51,9 @@ class TransactionResource extends Resource
                     ->options([
                         'pending' => 'Pending',
                         'completed' => 'Completed',
-                        'cancelled' => 'Cancelled', 
-                    ])                  
-                    ->required(),               
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->required(),
                 Forms\Components\TextInput::make('payment_method')
                     ->nullable()
                     ->maxLength(255),
@@ -123,6 +123,7 @@ class TransactionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

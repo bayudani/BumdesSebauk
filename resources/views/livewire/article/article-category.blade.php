@@ -2,7 +2,7 @@
     <section id="for-you-entertainment" class="max-w-[1130px] mx-auto mt-[70px]">
         <div class="flex justify-between items-center">
             <h1 class="font-bold text-[26px] leading-[39px]">
-                Terkait
+                Berita Terbaru
                 <br />
                 Desa Sebauk
             </h1>

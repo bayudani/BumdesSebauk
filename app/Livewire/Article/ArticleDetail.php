@@ -45,6 +45,8 @@ class ArticleDetail extends Component
     {
         $this->post = $post;
         $this->loadRelatedArticles();
+
+        $this->post->increment('click_count');
     }
 
     /**
