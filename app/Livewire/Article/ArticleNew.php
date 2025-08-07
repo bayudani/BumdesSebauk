@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Livewire\Article;
 
 use Livewire\Component;
@@ -10,7 +12,7 @@ class ArticleNew extends Component
     public function render()
     {
         $articles = Post::whereNotNull('published_at') // pastikan tanggal publish ada
-            ->whereDate('published_at', '<=', now())   // ambil yang sudah dipublish
+            ->whereDate('created_at', '<=', now())   // ambil yang sudah dipublish
             ->orderBy('published_at', 'desc')          // urutkan dari yang terbaru
             ->take(3)                                   // ambil 3 artikel
             ->get();
