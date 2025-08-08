@@ -23,7 +23,7 @@ new class extends Component
 <header class="bg-white shadow-sm w-full">
   <nav class="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
     <!-- KIRI: Tulisan DesaSebauk -->
-    <div class="text-xl font-bold text-black">BUMDESmart</div>
+    <a class="text-xl font-bold text-black" href="/">BUMDESmart</a>
 
     <!-- TENGAH: Menu Navigasi besar, hitam, dan jarak lebih lebar -->
     <ul class="flex items-center gap-8 text-base font-semibold text-black">
