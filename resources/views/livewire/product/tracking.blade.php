@@ -20,6 +20,8 @@
                         <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Detail Pesanan</h1>
                         <p class="text-slate-500 mt-2">ID Transaksi:
                             <span class="font-semibold text-purple-600 bg-purple-100 py-1 px-2 rounded">{{ $transaction->id }}</span>
+                            <br/>
+                            <span class="font-light text-black text-xs">Simpan id transaksi ini untuk melacak transaksi anda</span>
                         </p>
                     </div>
 
@@ -33,14 +35,14 @@
                                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     Pesanan Selesai
                                 </span>
-                                <p class="mt-2 text-slate-500">Pesanan Anda telah berhasil dikirim dan diterima.</p>
+                                <p class="mt-2 text-slate-500">Transaksi anda telah dikonfirmasi.</p>
                             
                             @elseif ($transaction->status == 'pending')
                                 <span class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 text-lg font-bold rounded-full">
                                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     Sedang Diproses
                                 </span>
-                                <p class="mt-2 text-slate-500">Pesanan Anda sedang kami siapkan. Mohon ditunggu.</p>
+                                <p class="mt-2 text-slate-500">Transaksi anda sedang diproses.</p>
 
                             @elseif ($transaction->status == 'canceled')
                                 <span class="inline-flex items-center px-4 py-2 bg-red-100 text-red-800 text-lg font-bold rounded-full">

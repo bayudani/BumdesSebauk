@@ -12,12 +12,13 @@ Route::get('/checkout/{id}', \App\Livewire\Product\Transactions::class)
     ->name('checkout');
     
 Route::view('/product', 'product')->name('product');
+// Route::view('/track', 'tracking')->name('track');
     // ->name('articles')
     // ->middleware(['auth', 'verified']);
 
 
 
-Route::get('/track/{id}', Tracking::class)->name('tracking');
+Route::get('/track/{id?}', Tracking::class)->name('tracking');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

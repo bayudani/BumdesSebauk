@@ -1,19 +1,20 @@
 <div>
-    <section id="for-you-entertainment" class="max-w-[1130px] mx-auto mt-[70px]">
-        <div class="flex justify-between items-center">
-            <h1 class="font-bold text-[26px] leading-[39px]">
+     <!-- Article Section (Mobile-Friendly) -->
+    <section id="for-you-entertainment" class="max-w-[1130px] mx-auto py-16 md:py-24 px-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <h1 class="font-bold text-2xl md:text-3xl leading-tight">
                 Berita Terbaru
                 <br />
                 Desa Sebauk
             </h1>
-            {{-- <a href="{{ route('blog.index') }}">
-                <div class="py-3 px-[22px] border border-[#EEF0F7] rounded-full font-semibold">Selengkapnya</div>
-            </a> --}}
+            <a href="{{ route('articles') }}" class="mt-4 md:mt-0 py-3 px-6 border border-gray-300 rounded-full font-semibold text-sm hover:bg-gray-100 transition-all">
+                Lihat Semua Berita
+            </a>
         </div>
 
-        <div class="mt-[30px] max-h-[424px] flex justify-between">
+        <div class="mt-8 md:mt-12 flex flex-col lg:flex-row gap-8">
             {{-- Featured Artikel (artikel pertama) --}}
-            @if($articles->isNotEmpty())
+            @if(isset($articles) && $articles->isNotEmpty())
                 @php
                     $featured = $articles->first();
                     $featuredImage = $featured->banner 
@@ -21,43 +22,42 @@
                         : asset('assets/images/default.jpg');
                 @endphp
 
-                <div class="relative overflow-hidden rounded-[20px] border max-w-[635px]">
-                    <img src="{{ $featuredImage }}" alt="Gambar Artikel" class="w-full h-full object-cover" />
-                    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.9)_100%)]"></div>
-                    <div class="text-white space-y-[10px] absolute bottom-[30px] left-[30px]">
-                        <p>Featured</p>
-                        <a href="{{ route('blog.show', $featured->slug) }}">
-                            <h1 class="font-bold text-[30px] leading-9 hover:underline pr-[30px]">
+                <!-- Kolom Kiri: Featured Artikel -->
+                <div class="w-full lg:w-7/12">
+                    <a href="{{ route('blog.show', $featured->first()->slug) }}" class="block relative overflow-hidden rounded-2xl group h-full min-h-[400px]">
+                        <img src="{{ $featuredImage }}" alt="Gambar Artikel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <span class="text-sm bg-purple-600 px-2 py-1 rounded">Featured</span>
+                            <h3 class="font-bold text-2xl leading-tight mt-2 group-hover:underline">
                                 {{ $featured->title }}
-                            </h1>
-                        </a>
-                    </div>
+                            </h3>
+                        </div>
+                    </a>
                 </div>
-            @endif
 
-            {{-- List Artikel lainnya --}}
-            <div class="relative" id="custom-scrollbar">
-                <div class="max-w-[475px] space-y-[20px] pr-4 max-h-[424px] overflow-auto" id="custom-scrollbar">
-                    @foreach($articles->skip(1) as $article)
+                <!-- Kolom Kanan: List Artikel Lainnya -->
+                <div class="w-full lg:w-5/12 flex flex-col gap-5">
+                    @foreach($articles->skip(1)->take(3) as $article)
                         @php
                             $thumb = $article->banner 
                                 ? \Illuminate\Support\Facades\Storage::url($article->banner)
                                 : asset('assets/images/default.jpg');
                         @endphp
-                        <a href="{{ route('blog.show', $article->slug) }}">
-                            <div class="border border-[#EEF0F7] p-[14px] rounded-[20px] items-center flex space-x-4 hover:border-[#FF6B18] transition-all duration-300">
-                                <div class="h-[100px] w-[130px] flex-shrink-0 rounded-[20px] overflow-hidden">
-                                    <img src="{{ $thumb }}" alt="Thumbnail" class="h-full w-full object-cover" />
-                                </div>
-                                <div class="space-y-[6px] flex-1">
-                                    <h1 class="text-lg leading-[27px] font-bold">{{ $article->title }}</h1>
-                                    <p class="text-[#A3A6AE] text-sm">{{ $article->published_at->format('d M, Y') }}</p>
-                                </div>
+                        <a href="{{ route('blog.show', $articles->first()->slug) }}" class="flex items-center gap-4 p-4 border border-gray-200 rounded-2xl bg-white hover:shadow-lg hover:border-purple-500 transition-all duration-300">
+                            <div class="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="{{ $thumb }}" alt="Thumbnail" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-base leading-snug font-bold mb-1">{{ $article->title }}</h4>
+                                <p class="text-gray-500 text-xs">{{ $article->published_at->format('d M, Y') }}</p>
                             </div>
                         </a>
                     @endforeach
                 </div>
-            </div>
+            @else
+                 <p class="text-center text-gray-500 w-full py-10">Belum ada berita untuk ditampilkan.</p>
+            @endif
         </div>
     </section>
 </div>

@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <!-- Hero Section -->
-    <section id="hero-section" class="relative w-full overflow-hidden flex mx-auto mt-[30px]">
+    <section id="hero-section" class="relative w-full overflow-hidden">
         <div class="swiper-hero w-full">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
@@ -54,10 +54,6 @@
     </script>
 
     <!-- Icon -->
-    <div class="flex items-center gap-1 mt-4 px-4">
-        <div class="h-[18px] w-[18px] shrink-0 overflow-hidden">
-            <img class="h-full w-full object-contain" src="{{ asset('assets/images/icons/message-question-gray.svg') }}" alt="icon" />
-        </div>
-    </div>
+   
 
 </x-app-layout>

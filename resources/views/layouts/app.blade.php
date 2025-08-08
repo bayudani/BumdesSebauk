@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    {{-- icon --}}
+    <link rel="icon" href="{{ asset('assets/images/bumdes.png') }}" type="image/png">
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

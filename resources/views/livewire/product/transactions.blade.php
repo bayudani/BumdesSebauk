@@ -23,7 +23,7 @@
                             <label for="customer_name" class="block text-sm font-medium text-slate-900 mb-1">Nama
                                 Lengkap</label>
                             <input type="text" id="customer_name" wire:model="customer_name"
-                                class="w-full border-gray-300 rounded-md">
+                                class="px-4 py-3.5 bg-gray-100 text-slate-900 w-full text-sm border border-gray-200 rounded-md focus:border-purple-500 focus:bg-transparent outline-0">
                             @error('customer_name')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
@@ -32,7 +32,7 @@
                             <label for="customer_phone" class="block text-sm font-medium text-slate-900 mb-1">No.
                                 Telepon / WA</label>
                             <input type="tel" id="customer_phone" wire:model="customer_phone"
-                                class="w-full border-gray-300 rounded-md">
+                                class="px-4 py-3.5 bg-gray-100 text-slate-900 w-full text-sm border border-gray-200 rounded-md focus:border-purple-500 focus:bg-transparent outline-0">
                             @error('customer_phone')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
@@ -41,7 +41,7 @@
                             <label for="customer_address"
                                 class="block text-sm font-medium text-slate-900 mb-1">Alamat Lengkap</label>
                             <textarea id="customer_address" wire:model="customer_address" rows="3"
-                                class="w-full border-gray-300 rounded-md"></textarea>
+                                class="px-4 py-3.5 bg-gray-100 text-slate-900 w-full text-sm border border-gray-200 rounded-md focus:border-purple-500 focus:bg-transparent outline-0"></textarea>
                             @error('customer_address')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror

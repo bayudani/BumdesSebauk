@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://c642c26e8690.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,6 +104,8 @@ return [
             explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
         ),
     ],
+
+    'asset_url' => env('ASSET_URL', 'https://c642c26e8690.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------

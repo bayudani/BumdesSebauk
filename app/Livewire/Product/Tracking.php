@@ -12,16 +12,39 @@ use Livewire\Attributes\Layout;
 class Tracking extends Component
 {
 
-     public ?Transaction $transaction; // Properti untuk menampung data transaksi
+      public ?Transaction $transaction = null; // Inisialisasi sebagai null
+    public $transactionId = '';
+    public $searched = false; // Penanda apakah pencarian sudah dilakukan
 
     /**
-     * Inisialisasi komponen, mengambil data transaksi berdasarkan ID dari URL.
+     * Cari transaksi saat komponen di-mount, jika ada ID di URL.
+     * Route-nya bisa seperti: Route::get('/lacak/{id?}', Tracking::class);
      */
-    public function mount($id)
+   public function mount($id = null)
     {
-        // Cari transaksi berdasarkan ID, dan ambil juga relasi 'product'-nya.
-        // Jika tidak ketemu, akan menampilkan halaman 404.
-        $this->transaction = Transaction::with('product')->findOrFail($id);
+        // Jika ada ID di URL (misal: /track/uuid-123), langsung cari transaksinya.
+        if ($id) {
+            $this->transactionId = $id;
+            $this->findTransaction();
+        }
+        // Jika tidak ada ID (misal: /track), method ini tidak melakukan apa-apa,
+        // dan hanya menampilkan form pencarian.
+    }
+
+    /**
+     * Fungsi untuk mencari transaksi berdasarkan ID yang diinput.
+     * Ini adalah method yang akan dipanggil oleh tombol "Lacak".
+     */
+    public function findTransaction()
+    {
+        // Validasi sederhana, pastikan ID tidak kosong
+        $this->validate(['transactionId' => 'required']);
+        
+        // Cari transaksi beserta relasi produknya
+        $this->transaction = Transaction::with('product')->find($this->transactionId);
+        
+        // Tandai bahwa pencarian sudah dilakukan
+        $this->searched = true;
     }
 
     public function render()
