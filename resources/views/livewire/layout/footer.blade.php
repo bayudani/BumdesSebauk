@@ -2,7 +2,7 @@
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 pb-10">
     <!-- Kolom 1: Logo & Info Sekolah -->
     <div class="text-center md:text-left">
-      <img src="logo_ra.png" alt="Logo RA" class="w-24 mx-auto md:mx-0 mb-4" />
+     
       <h2 class="text-lg font-bold">BUMDES<br>Sebauk</h2>
      
       <!-- Ikon Sosial -->
