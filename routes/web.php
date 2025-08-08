@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Article\ArticleDetail;
+use App\Livewire\Product\Tracking;
 use App\Livewire\Product\Transactions;
 use Illuminate\Support\Facades\Route;
 use Stephenjude\FilamentBlog\Models\Post;
@@ -13,6 +14,10 @@ Route::get('/checkout/{id}', \App\Livewire\Product\Transactions::class)
 Route::view('/product', 'product')->name('product');
     // ->name('articles')
     // ->middleware(['auth', 'verified']);
+
+
+
+Route::get('/track/{id}', Tracking::class)->name('tracking');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

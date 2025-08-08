@@ -8,6 +8,7 @@ use App\Models\Product as ProductModel;
 use App\Models\Transaction;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 #[Layout('layouts.app')]
@@ -77,42 +78,48 @@ class Transactions extends Component
             ]);
             return;
         }
+        
+        // Definisikan variabel di luar closure agar bisa diakses nanti
+        $newTransaction = null;
 
         try {
-            // Gunakan Database Transaction untuk memastikan semua proses berhasil atau semua dibatalkan.
-            // Ini mencegah stok berkurang jika ada error saat menyimpan data transaksi.
-            DB::transaction(function () {
-                // Hitung total harga (tanpa pajak, karena pajak hanya untuk tampilan)
+            // Gunakan Database Transaction dan oper variabel $newTransaction by reference
+            DB::transaction(function () use (&$newTransaction) {
+                // Hitung total harga
                 $totalAmount = $this->product->price * $this->quantity;
 
-                // Simpan file bukti transfer ke storage/app/public/proofs
+                // Simpan file bukti transfer
                 $path = $this->proof_of_transaction->store('proofs', 'public');
 
-                // Buat record transaksi baru di database
-                Transaction::create([
+                // Buat record transaksi baru dan simpan instance-nya ke variabel
+                // ID akan di-generate otomatis oleh model (UUID)
+                $newTransaction = Transaction::create([
                     'product_id' => $this->product->id,
                     'customer_name' => $this->customer_name,
                     'customer_address' => $this->customer_address,
                     'customer_phone' => $this->customer_phone,
                     'quantity' => $this->quantity,
                     'total_amount' => $totalAmount,
-                    'status' => 'pending', // Status awal
+                    'status' => 'pending', // Status awal: Menunggu Konfirmasi
                     'transaction_date' => now(),
                     'payment_method' => $this->payment_method,
                     'proof_of_transaction' => $path,
                 ]);
 
-                // Kurangi stok produk setelah transaksi berhasil dibuat
+                // Kurangi stok produk
                 $this->product->decrement('stok', $this->quantity);
             });
 
-            // Set pesan sukses dan redirect
-            session()->flash('message', 'Transaksi berhasil dibuat dan sedang diproses.');
-            return redirect()->to('/produk');
+            // Jika transaksi DB berhasil, $newTransaction tidak akan null lagi
+            if ($newTransaction) {
+                session()->flash('message', 'Transaksi berhasil! Simpan ID Transaksi Anda untuk melacak pesanan.');
+                // Redirect ke route 'tracking' dengan membawa ID transaksi (UUID)
+                return redirect()->route('tracking', ['id' => $newTransaction->id]);
+            }
 
         } catch (\Exception $e) {
             // Jika terjadi error, tampilkan pesan kesalahan
-            session()->flash('error', 'Terjadi kesalahan saat memproses transaksi. Silakan coba lagi.');
+            session()->flash('error', 'Terjadi kesalahan saat memproses transaksi. Silakan coba lagi. Error: ' . $e->getMessage());
         }
     }
 
@@ -121,9 +128,8 @@ class Transactions extends Component
      */
     public function render()
     {
-        // Kalkulasi harga ditaruh di sini agar selalu update saat kuantitas berubah
         $subtotal = $this->product->price * $this->quantity;
-        $tax = $subtotal * 0.11; // Pajak 11% dari subtotal
+        $tax = $subtotal * 0.11;
         $totalPrice = $subtotal + $tax;
 
         return view('livewire.product.transactions', [
