@@ -1,7 +1,11 @@
 <div>
+
+
+
     {{-- @section('content') --}}
     <div class="max-w-7xl mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-6">Produk Bumdes</h1>
+
         @php
             $categories = $products->groupBy('category'); // Asumsinya data produk sudah dikelompokkan
         @endphp

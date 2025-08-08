@@ -7,8 +7,9 @@ use Stephenjude\FilamentBlog\Models\Post;
 
 Route::view('/', 'home')->name('home');
 Route::view('/berita', 'article')->name('articles');
-Route::get('/checkout/{uuid}', \App\Livewire\Product\Transactions::class)
+Route::get('/checkout/{id}', \App\Livewire\Product\Transactions::class)
     ->name('checkout');
+    
 Route::view('/product', 'product')->name('product');
     // ->name('articles')
     // ->middleware(['auth', 'verified']);

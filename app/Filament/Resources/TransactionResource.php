@@ -19,6 +19,7 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-currency-dollar';
 
+    protected static ?string $navigationLabel = 'Transactions';
     // group
     protected static ?string $navigationGroup = 'Transactions';
 
@@ -110,7 +111,7 @@ class TransactionResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
-            
+
             ])
             ->filters([
                 // filter by product
@@ -124,6 +125,15 @@ class TransactionResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('markAsCompleted')
+                    ->label('Mark as Completed')
+                    ->icon('heroicon-s-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->visible(fn($record) => $record->status !== 'completed') // tampil cuma kalau belum completed
+                    ->action(function ($record) {
+                        $record->update(['status' => 'completed']);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
