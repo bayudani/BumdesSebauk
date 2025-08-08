@@ -131,11 +131,22 @@
 
                     <div class="flex justify-between items-center">
                         <label for="quantity" class="font-medium">Jumlah:</label>
-                        <input type="number" id="quantity" wire:model.live="quantity" min="1"
-                            class="w-20 text-center border-gray-300 rounded-md">
+                        <div class="flex items-center border border-gray-300 rounded-md">
+                            {{-- Tombol Kurang --}}
+                            <button type="button" wire:click="decrementQuantity"
+                                class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100">-</button>
+
+                            {{-- Tampilan Angka --}}
+                            <input type="text" id="quantity" value="{{ $quantity }}" readonly
+                                class="w-12 text-center border-0 font-semibold">
+
+                            {{-- Tombol Tambah --}}
+                            <button type="button" wire:click="incrementQuantity"
+                                class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100">+</button>
+                        </div>
                     </div>
                     @error('quantity')
-                        <span class="text-red-500 text-sm d-block">{{ $message }}</span>
+                        <div class="text-red-500 text-sm mt-1 text-right">{{ $message }}</div>
                     @enderror
 
 
