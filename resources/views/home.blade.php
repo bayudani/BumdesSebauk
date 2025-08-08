@@ -26,7 +26,7 @@
             
         </section>
         <livewire:about.aboud-bumdes/>
-         <livewire:article.article-new/> 
+          
          <livewire:article.article-category/> 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
