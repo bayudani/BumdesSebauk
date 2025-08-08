@@ -1,3 +1,3 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <livewire:product.transactions />
-</x-app-layout>
+</x-app-layout> --}}

@@ -30,7 +30,7 @@ new class extends Component
       <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('home')" :active="request()->routeIs('home')"
                                 class="hover:bg-secondary-50 dark:hover:bg-secondary-900/20 rounded-md transition-all duration-200"
                                 wire:navigate>{{ __('Home') }}</x-nav-link></li>
-      <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('Produk')" :active="request()->routeIs('Produk')"
+      <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('product')" :active="request()->routeIs('Produk')"
                                 class="hover:bg-secondary-50 dark:hover:bg-secondary-900/20 rounded-md transition-all duration-200"
                                 wire:navigate>{{ __('Produk') }}</x-nav-link></li>
       <li class="hover:text-green-700 cursor-pointer"><x-nav-link :href="route('articles')" :active="request()->routeIs('Berita')"
