@@ -6,6 +6,7 @@ use Stephenjude\FilamentBlog\Models\Post;
 
 Route::view('/', 'home')->name('home');
 Route::view('/berita', 'article')->name('articles');
+Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/produk', 'article')->name('Produk');
     // ->name('articles')
     // ->middleware(['auth', 'verified']);
