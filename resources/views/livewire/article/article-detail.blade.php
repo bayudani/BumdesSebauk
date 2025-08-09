@@ -20,14 +20,14 @@
             </div>
             <div class="flex gap-1 items-center">
                 <div class="flex gap-[1px] items-center">
-                    @for ($i = 0; $i < 5; $i++)
+                    {{-- @for ($i = 0; $i < 5; $i++)
                         <img src="{{ asset('assets/images/icons/star.svg') }}" alt="icon"
                             class="w-4 h-4 shrink-0" />
                     @endfor
-                </div>
-                <strong class="font-semibold text-xs leading-[18px]">
+                </div> --}}
+                {{-- <strong class="font-semibold text-xs leading-[18px]">
                     ({{ number_format($post->author?->followers_count ?? 12490) }})
-                </strong>
+                </strong> --}}
             </div>
         </div>
     </section>
@@ -48,7 +48,7 @@
 
         <div class="side-bar flex flex-col w-[300px] shrink-0 gap-10">
             {{-- ADS --}}
-            <div class="ads flex flex-col gap-3 w-full">
+            {{-- <div class="ads flex flex-col gap-3 w-full">
                 <a href="#">
                     <div class="flex justify-center items-center overflow-hidden w-[300px] h-[300px] rounded-2xl">
                         <img src="https://blocks.astratic.com/img/general-img-landscape.png" alt="image"
@@ -62,10 +62,10 @@
                             class="w-[18px] h-[18px] shrink-0" />
                     </a>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- More From Author --}}
-            <div class="more-for-author flex flex-col gap-4">
+            {{-- <div class="more-for-author flex flex-col gap-4">
                 <p class="font-bold">More From Author</p>
                 @forelse($authorArticles as $article)
                     <a href="{{ route('blog.show', $article->slug) }}" class="card">
@@ -88,10 +88,10 @@
                 @empty
                     <p class="text-xs text-gray-400">No more articles from this author.</p>
                 @endforelse
-            </div>
+            </div> --}}
 
             {{-- ADS --}}
-            <div class="ads flex flex-col gap-3 w-full">
+            {{-- <div class="ads flex flex-col gap-3 w-full">
                 <a href="#">
                     <div class="flex justify-center items-center overflow-hidden w-[300px] h-[300px] rounded-2xl">
                         <img src="https://blocks.astratic.com/img/general-img-landscape.png" alt="image"
@@ -105,12 +105,12 @@
                             class="w-[18px] h-[18px] shrink-0" />
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 
     {{-- ADVERTISEMENT BANNER --}}
-    <section id="Advertisement" class="mx-auto mt-[70px] flex max-h-[153px] w-full max-w-[900px] flex-col gap-3">
+    {{-- <section id="Advertisement" class="mx-auto mt-[70px] flex max-h-[153px] w-full max-w-[900px] flex-col gap-3">
         <a href="">
             <div class="h-[120px] w-full overflow-hidden rounded-2xl">
                 <img class="h-full w-full object-contain"
@@ -124,7 +124,7 @@
                     src="https://blocks.astratic.com/img/general-img-landscape.png" alt="" />
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- OTHER NEWS --}}
     <section id="OtherNewsYou" class="mx-auto mt-[70px] w-full bg-[#F9F9FC]">

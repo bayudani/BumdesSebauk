@@ -25,7 +25,7 @@
                                    Selamat Datang di Website Resmi BUMDes Sebauk
                                 </a>
                             </div>
-                            <p class="text-sm md:text-base">Business</p>
+                            {{-- <p class="text-sm md:text-base">Business</p> --}}
                         </div>
                     </div>
                 </div>

@@ -38,8 +38,8 @@
                             @enderror
                         </div>
                         <div>
-                            <label for="customer_address"
-                                class="block text-sm font-medium text-slate-900 mb-1">Alamat Lengkap</label>
+                            <label for="customer_address" class="block text-sm font-medium text-slate-900 mb-1">Alamat
+                                Lengkap</label>
                             <textarea id="customer_address" wire:model="customer_address" rows="3"
                                 class="px-4 py-3.5 bg-gray-100 text-slate-900 w-full text-sm border border-gray-200 rounded-md focus:border-purple-500 focus:bg-transparent outline-0"></textarea>
                             @error('customer_address')
@@ -62,7 +62,7 @@
                             <div class="flex items-center border border-gray-300 rounded-md">
                                 <button type="button" wire:click="decrementQuantity"
                                     class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-200 rounded-l-md">-</button>
-                                <input type="text" id="quantity" value="{{ $quantity }}" readonly
+                                <input type="text" id="quantity" value="{{ $quantity }}" 
                                     class="w-12 text-center border-0 font-semibold bg-transparent">
                                 <button type="button" wire:click="incrementQuantity"
                                     class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-200 rounded-r-md">+</button>
@@ -81,11 +81,12 @@
                                 <span>Subtotal</span>
                                 <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                             </li>
-                            <li class="flex justify-between text-sm">
-                                <span>Pajak (11%)</span>
+                            {{-- <li class="flex justify-between text-sm">
+                                <span>Pajak</span>
                                 <span>Rp {{ number_format($tax, 0, ',', '.') }}</span>
-                            </li>
-                            <li class="flex justify-between text-lg font-semibold text-slate-900 border-t border-gray-300 pt-4">
+                            </li> --}}
+                            <li
+                                class="flex justify-between text-lg font-semibold text-slate-900 border-t border-gray-300 pt-4">
                                 <span>Total</span>
                                 <span>Rp {{ number_format($totalPrice, 0, ',', '.') }}</span>
                             </li>
@@ -99,18 +100,23 @@
                             Silakan transfer ke salah satu rekening berikut, lalu upload bukti transfer.
                         </p>
                         <h3 class="text-lg font-semibold text-slate-900 mt-4">Pilih Rekening Tujuan</h3>
-                        <div class="flex flex-col gap-4 mt-4" wire:model="payment_method">
-                            {{-- Sebaiknya ini di-loop dari database, tapi untuk contoh kita hardcode --}}
-                            <label class="flex items-center p-4 border bg-white rounded-lg cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
-                                <input type="radio" name="bank" value="BCA" class="w-5 h-5">
+                        <div class="flex flex-col gap-4 mt-4">
+
+                            <label
+                                class="flex items-center p-4 border bg-white rounded-lg cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
+                                {{-- TAMBAHKAN wire:model di sini --}}
+                                <input type="radio" wire:model="payment_method" value="BCA" class="w-5 h-5">
                                 <div class="ml-4">
                                     <p class="font-semibold text-slate-900">Bank BCA</p>
                                     <p class="text-sm text-slate-600">No. Rekening: 1234567890</p>
                                     <p class="text-sm text-slate-600">a.n BUMDes Sebauk</p>
                                 </div>
                             </label>
-                            <label class="flex items-center p-4 border bg-white rounded-lg cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
-                                <input type="radio" name="bank" value="Mandiri" class="w-5 h-5">
+
+                            <label
+                                class="flex items-center p-4 border bg-white rounded-lg cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
+                                {{-- TAMBAHKAN wire:model di sini juga --}}
+                                <input type="radio" wire:model="payment_method" value="Mandiri" class="w-5 h-5">
                                 <div class="ml-4">
                                     <p class="font-semibold text-slate-900">Bank Mandiri</p>
                                     <p class="text-sm text-slate-600">No. Rekening: 0987654321</p>

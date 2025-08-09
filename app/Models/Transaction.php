@@ -31,7 +31,7 @@ class Transaction extends Model
         'status',
         'transaction_date',
         'payment_method',
-        'proof of transaction',
+        'proof_of_transaction',
     ];
 
     // relationships

@@ -24,7 +24,7 @@
 
                 <!-- Kolom Kiri: Featured Artikel -->
                 <div class="w-full lg:w-7/12">
-                    <a href="{{ route('blog.show', $featured->first()->slug) }}" class="block relative overflow-hidden rounded-2xl group h-full min-h-[400px]">
+                    <a href="{{ route('blog.show', $featured->slug) }}" class="block relative overflow-hidden rounded-2xl group h-full min-h-[400px]">
                         <img src="{{ $featuredImage }}" alt="Gambar Artikel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white">
@@ -44,7 +44,7 @@
                                 ? \Illuminate\Support\Facades\Storage::url($article->banner)
                                 : asset('assets/images/default.jpg');
                         @endphp
-                        <a href="{{ route('blog.show', $articles->first()->slug) }}" class="flex items-center gap-4 p-4 border border-gray-200 rounded-2xl bg-white hover:shadow-lg hover:border-purple-500 transition-all duration-300">
+                        <a href="{{ route('blog.show', $article->slug) }}" class="flex items-center gap-4 p-4 border border-gray-200 rounded-2xl bg-white hover:shadow-lg hover:border-purple-500 transition-all duration-300">
                             <div class="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-xl overflow-hidden">
                                 <img src="{{ $thumb }}" alt="Thumbnail" class="w-full h-full object-cover" />
                             </div>

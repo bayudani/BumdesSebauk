@@ -63,7 +63,7 @@ class TransactionResource extends Resource
                 Forms\Components\TextInput::make('payment_method')
                     ->nullable()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('proof of transaction')
+                Forms\Components\FileUpload::make('proof_of_transaction')
                     ->nullable()
                     ->image()
                     ->maxSize(1024)
@@ -110,8 +110,10 @@ class TransactionResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_method')
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('proof of transaction')
-                    ->label('Proof of Transaction')
+                Tables\Columns\ImageColumn::make('proof_of_transaction')
+                    ->label('Bukti Transaksi')
+                        ->disk('public') // Tambahkan ini biar lebih eksplisit
+
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

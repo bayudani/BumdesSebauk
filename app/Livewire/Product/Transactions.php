@@ -129,12 +129,12 @@ class Transactions extends Component
     public function render()
     {
         $subtotal = $this->product->price * $this->quantity;
-        $tax = $subtotal * 0.11;
-        $totalPrice = $subtotal + $tax;
+        // $tax = $subtotal * 0.11;
+        $totalPrice = $subtotal;
 
         return view('livewire.product.transactions', [
             'subtotal' => $subtotal,
-            'tax' => $tax,
+            // 'tax' => $tax,
             'totalPrice' => $totalPrice,
         ]);
     }
