@@ -8,6 +8,7 @@ use App\Models\Product as ProductModel;
 use App\Models\Transaction;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -26,6 +27,7 @@ class Transactions extends Component
     public $customer_address = '';
     public $customer_phone = '';
     public $payment_method = 'Bank BCA'; // Default pilihan bank
+    public $delivery_method = 'pickup'; // Default pilihan pengiriman
     public $proof_of_transaction;
 
     /**
@@ -34,6 +36,10 @@ class Transactions extends Component
     public function mount($id)
     {
         $this->product = ProductModel::findOrFail($id);
+        if (Auth::check()) {
+            $user = Auth::user();
+            $this->customer_name = $user->name;
+        }
     }
 
     /**
@@ -68,6 +74,8 @@ class Transactions extends Component
             'customer_phone' => 'required|string|max:20',
             'quantity' => 'required|integer|min:1',
             'payment_method' => 'required|string',
+            'delivery_method' => 'required|in:pickup,delivery', // Validasi delivery_method
+
             'proof_of_transaction' => 'required|image|max:2048', // Max 2MB
         ]);
 
@@ -78,7 +86,7 @@ class Transactions extends Component
             ]);
             return;
         }
-        
+
         // Definisikan variabel di luar closure agar bisa diakses nanti
         $newTransaction = null;
 
@@ -94,15 +102,18 @@ class Transactions extends Component
                 // Buat record transaksi baru dan simpan instance-nya ke variabel
                 // ID akan di-generate otomatis oleh model (UUID)
                 $newTransaction = Transaction::create([
+                    'user_id' => Auth::id(), // Ambil ID user yang sedang login
                     'product_id' => $this->product->id,
                     'customer_name' => $this->customer_name,
                     'customer_address' => $this->customer_address,
                     'customer_phone' => $this->customer_phone,
                     'quantity' => $this->quantity,
                     'total_amount' => $totalAmount,
-                    'status' => 'pending', // Status awal: Menunggu Konfirmasi
+                    'transaction_status' => 'pending', // Sesuai nama kolom di migrasi
+                    'order_status' => 'pending',
                     'transaction_date' => now(),
                     'payment_method' => $this->payment_method,
+                    'delivery_method' => $this->delivery_method, // Simpan metode pengiriman
                     'proof_of_transaction' => $path,
                 ]);
 
@@ -116,7 +127,6 @@ class Transactions extends Component
                 // Redirect ke route 'tracking' dengan membawa ID transaksi (UUID)
                 return redirect()->route('tracking', ['id' => $newTransaction->id]);
             }
-
         } catch (\Exception $e) {
             // Jika terjadi error, tampilkan pesan kesalahan
             session()->flash('error', 'Terjadi kesalahan saat memproses transaksi. Silakan coba lagi. Error: ' . $e->getMessage());

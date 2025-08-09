@@ -9,6 +9,7 @@ class Product_image extends Model
     protected $fillable = [
         'product_id',
         'image',
+        'media_type'
     ];
 
     /**

@@ -94,7 +94,7 @@ new class extends Component {
                                 <a href="{{ route('profile') }}" wire:navigate class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     Profile
                                 </a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <a href="{{ route('history') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     Transaksi Saya
                                 </a>
                                 <div class="border-t border-gray-100"></div>

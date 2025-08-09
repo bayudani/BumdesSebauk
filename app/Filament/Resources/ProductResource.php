@@ -18,7 +18,7 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-m-shopping-cart';
-    protected static ?string $navigationGroup = 'Transactions';
+    protected static ?string $navigationGroup = 'Products';
 
 
     public static function form(Form $form): Form
@@ -36,11 +36,12 @@ class ProductResource extends Resource
                     ->required()
                     ->numeric()
                     ->maxLength(20),
-                Forms\Components\FileUpload::make('image')
-                    ->required()
-                    ->image()
-                    ->maxSize(1024)
-                    ->disk('public'),
+                // Forms\Components\FileUpload::make('image')
+                    
+                //     ->required()
+                //     ->image()
+                //     ->maxSize(1024)
+                //     ->disk('public'),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required(),
@@ -69,7 +70,7 @@ class ProductResource extends Resource
                     ->label('Category')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image')
+                Tables\Columns\ImageColumn::make('images.image')
                     ->label('Image'),
                 Tables\Columns\TextColumn::make('stok')
                     ->sortable()

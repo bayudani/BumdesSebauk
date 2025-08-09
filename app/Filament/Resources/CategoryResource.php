@@ -19,7 +19,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-c-list-bullet';
     
-        protected static ?string $navigationGroup = 'Transactions';
+        protected static ?string $navigationGroup = 'Products'; // Grup di navigasi
 
 
     public static function form(Form $form): Form

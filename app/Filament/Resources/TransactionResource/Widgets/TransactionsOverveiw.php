@@ -14,7 +14,7 @@ class TransactionsOverveiw extends BaseWidget
             Stat::make(
                 'Total Transaksi',
                 'Rp ' . number_format(
-                    Transaction::where('status', 'completed')->sum('total_amount'),
+                    Transaction::where('transaction_status', 'completed')->sum('total_amount'),
                     0,
                     ',',
                     '.'

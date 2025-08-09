@@ -45,6 +45,8 @@
             <livewire:layout.footer />
         </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fslightbox-pro@4/index.min.js"></script>
 </body>
 
 </html>

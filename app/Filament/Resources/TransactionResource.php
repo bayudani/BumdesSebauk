@@ -53,9 +53,17 @@ class TransactionResource extends Resource
                     ->required()
                     ->numeric()
                     ->maxLength(20),
-                Forms\Components\Select::make('status')
+                Forms\Components\Select::make('transaction_status')
                     ->options([
                         'pending' => 'Pending',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->required(),
+                Forms\Components\Select::make('order_status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'processing' => 'processing',
                         'completed' => 'Completed',
                         'cancelled' => 'Cancelled',
                     ])
@@ -93,27 +101,30 @@ class TransactionResource extends Resource
                     ->label('Customer Phone')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('product.category.name')
-                    ->label('Category')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('product.image')
-                    ->label('Product Image'),
+                // Tables\Columns\TextColumn::make('product.category.name')
+                //     ->label('Category')
+                //     ->sortable()
+                //     ->searchable(),
+                // Tables\Columns\ImageColumn::make('product.image')
+                //     ->label('Product Image'),
                 Tables\Columns\TextColumn::make('quantity')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_amount')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('order_status')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('transaction_status')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('transaction_date')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_method')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('delivery_method')
+                    ->sortable(),
                 Tables\Columns\ImageColumn::make('proof_of_transaction')
                     ->label('Bukti Transaksi')
-                        ->disk('public') // Tambahkan ini biar lebih eksplisit
-
+                    ->disk('public') // Tambahkan ini biar lebih eksplisit
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -139,7 +150,10 @@ class TransactionResource extends Resource
                     ->requiresConfirmation()
                     ->visible(fn($record) => $record->status !== 'completed') // tampil cuma kalau belum completed
                     ->action(function ($record) {
-                        $record->update(['status' => 'completed']);
+                        $record->update([
+                            'transaction_status' => 'completed',
+                            'order_status' => 'processing', // <-- Tambahkan baris ini
+                        ]);
                     }),
             ])
             ->bulkActions([
