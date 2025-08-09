@@ -22,6 +22,7 @@ class Transaction extends Model
     }
 
     protected $fillable = [
+        'user_id',
         'product_id',
         'customer_name',
         'customer_address',
@@ -32,6 +33,7 @@ class Transaction extends Model
         'transaction_date',
         'payment_method',
         'proof_of_transaction',
+        'delivery_method',
     ];
 
     // relationships

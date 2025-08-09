@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->uuid('product_id')
                 ->constrained('products')
                 ->onDelete('cascade');
@@ -21,10 +22,12 @@ return new class extends Migration
             $table->string('customer_phone')->nullable();
             $table->integer('quantity')->default(1);
             $table->decimal('total_amount', 20, 2);
-            $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');
+            $table->enum('transaction_status', ['pending', 'completed', 'cancelled'])->default('pending');
+            $table->enum('order_status', ['pending','processing', 'completed', 'cancelled'])->default('pending');
             $table->timestamp('transaction_date')->useCurrent();
             $table->string('payment_method')->nullable();
-            $table->string('proof of transaction')->nullable();
+            $table->enum('delivery_method', ['pickup', 'delivery'])->default('pickup');
+            $table->string('proof_of_transaction')->nullable();
             $table->timestamps();
         });
     }

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('blog_posts', function (Blueprint $table) {
-            $table->integer('click_count')->default(0);
+        Schema::create('product_images', function (Blueprint $table) {
+            $table->id();
+            $table->uuid('product_id')->constrained('products')->onDelete('cascade');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('blog_posts', function (Blueprint $table) {
-            $table->dropColumn('click_count');
-        });
+        Schema::dropIfExists('product_images');
     }
 };

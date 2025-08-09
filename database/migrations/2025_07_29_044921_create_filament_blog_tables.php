@@ -42,6 +42,7 @@ return new class () extends Migration {
             $table->string('banner')->nullable();
             $table->longText('content');
             $table->date('published_at')->nullable();
+            $table->integer('click_count')->default(0);
             $table->timestamps();
         });
     }
