@@ -13,8 +13,7 @@ new class extends Component {
 
         $this->redirect('/', navigate: true);
     }
-};
-?>
+}; ?>
 
 <div>
     <header class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50 sticky top-0">
@@ -24,7 +23,6 @@ new class extends Component {
             <a href="{{ route('home') }}" class="hidden max-sm:block font-bold"><img
                     src="{{ asset('assets/images/bumdes.png') }}" alt="logo" class="w-9" /></a>
 
-            <!-- Wrapper untuk semua item di sebelah kanan -->
             <div class="flex items-center gap-x-5">
                 <div id="collapseMenu"
                     class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50">
@@ -64,27 +62,57 @@ new class extends Component {
                         <li class="max-lg:border-b max-lg:py-3">
                             <a href="{{ route('tracking') }}"
                                 class="block font-medium text-[15px] hover:text-purple-600 {{ request()->routeIs('tracking') ? 'text-purple-600' : 'text-slate-900' }}"
-                                wire:navigate>{{ __('Cek Transaksi') }}</a>
+                                wire:navigate>{{ __('Tentang kami') }}</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="flex items-center max-lg:ml-auto space-x-4">
-                    {{-- @auth
-                        <!-- Tampilan jika sudah login -->
-                        <span class="px-4 py-2 text-sm font-medium">Hi, {{ auth()->user()->name }}</span>
-                        <button wire:click="logout" class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white bg-red-600 hover:bg-red-700">
-                            Logout
-                        </button>
+                    
+                    @auth
+                        <div x-data="{ open: false }" class="relative">
+                            <button @click="open = !open"
+                                class="flex items-center gap-x-2 px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50">
+                                <span>Hi, {{ auth()->user()->name }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                    
+                            <div x-show="open" @click.away="open = false"
+                                x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-50"
+                                style="display: none;">
+                                
+                                <a href="{{ route('profile') }}" wire:navigate class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Profile
+                                </a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Transaksi Saya
+                                </a>
+                                <div class="border-t border-gray-100"></div>
+                                <button wire:click="logout" class="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
                     @else
-                        <!-- Tampilan jika belum login -->
-                        <a href="{{ route('login') }}" wire:navigate class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50">
+                        <a href="{{ route('login') }}" wire:navigate
+                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50">
                             Login
                         </a>
-                        <a href="{{ route('register') }}" wire:navigate class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-purple-600 bg-purple-600 hover:bg-purple-700">
+                        <a href="{{ route('register') }}" wire:navigate
+                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-purple-600 bg-purple-600 hover:bg-purple-700">
                             Sign up
                         </a>
-                    @endauth --}}
+                    @endauth
 
                     <button id="toggleOpen" class="lg:hidden cursor-pointer">
                         <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

@@ -19,21 +19,26 @@ new #[Layout('layouts.guest')] class extends Component
      * Handle an incoming registration request.
      */
     public function register(): void
-    {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+{
+    $validated = $this->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+        'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+    ]);
 
-        $validated['password'] = Hash::make($validated['password']);
+    $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
+    $user = User::create($validated);
 
-        Auth::login($user);
+    // Assign role default
+    $user->assignRole('user'); // Pastikan role 'user' sudah ada di tabel roles
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
-    }
+    event(new Registered($user));
+
+    Auth::login($user);
+
+    $this->redirect(route('dashboard', absolute: false), navigate: true);
+}
 }; ?>
 
 <div>

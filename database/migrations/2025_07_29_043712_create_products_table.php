@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 20, 2);
-            $table->string('image')->nullable();
+            // $table->string('image')->nullable();
             $table->uuid( 'category_id')
                     ->constrained('categories')
                     ->onDelete('cascade');

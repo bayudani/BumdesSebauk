@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Spatie\Permission\Middleware\RoleMiddleware;
 use Stephenjude\FilamentBlog\BlogPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -57,6 +58,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RoleMiddleware::class . ':admin_operational', // Batasi akses ke admin saja
+
             ]);
     }
 }
