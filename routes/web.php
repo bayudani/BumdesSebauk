@@ -14,6 +14,7 @@ Route::get('/track/{id?}', Tracking::class)->name('tracking');
 
 
 
+Route::view('/Tentang-kami', 'about')->name('about');
 // Route::view('/track', 'tracking')->name('track');
 // ->name('articles')
 // ->middleware(['auth', 'verified']);
