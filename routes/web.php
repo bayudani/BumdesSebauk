@@ -12,6 +12,7 @@ Route::get('/checkout/{id}', \App\Livewire\Product\Transactions::class)
     ->name('checkout');
     
 Route::view('/product', 'product')->name('product');
+Route::view('/Tentang-kami', 'about')->name('about');
 // Route::view('/track', 'tracking')->name('track');
     // ->name('articles')
     // ->middleware(['auth', 'verified']);
