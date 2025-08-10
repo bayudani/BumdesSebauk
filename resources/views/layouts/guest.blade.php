@@ -18,7 +18,7 @@
 
     <div class="min-h-screen flex flex-col justify-center items-center px-4">
 
-        <!-- Logo -->
+        <!-- Logo --> 
         <div class="flex flex-col items-center mb-5">
             
             <h1 class="mt-2 text-lg sm:text-xl font-semibold text-gray-800 tracking-wide">

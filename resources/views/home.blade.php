@@ -35,6 +35,7 @@
 
     <!-- About Section -->
     <livewire:about.aboud-bumdes/>
+    
 
     <!-- Article Category -->
     <livewire:article.article-category/> 
