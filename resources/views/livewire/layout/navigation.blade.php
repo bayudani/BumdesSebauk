@@ -15,7 +15,7 @@ new class extends Component {
     }
 }; ?>
 
-<div>
+<div class="sticky top-0 z-50">
     <header class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50 sticky top-0">
         <div class="flex flex-wrap items-center justify-between gap-5 w-full">
             <!-- Logo -->
@@ -30,35 +30,35 @@ new class extends Component {
             <div class="flex items-center gap-x-5">
                 <div id="collapseMenu"
                     class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50">
-                    
+
 
                     <!-- Navigation Links -->
                     <ul
-    class="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
-    <li class="mb-6 hidden max-lg:block">
-        <a href="{{ route('home') }}" class="font-bold">BUMDESmart</a>
-    </li>
-    <li class="max-lg:border-b max-lg:py-3">
-        <a href="{{ route('home') }}"
-            class="block font-medium text-base hover:text-black text-black"
-            wire:navigate>{{ __('Home') }}</a>
-    </li>
-    <li class="max-lg:border-b max-lg:py-3">
-        <a href="{{ route('product') }}"
-            class="block font-medium text-base hover:text-black text-black"
-            wire:navigate>{{ __('Produk') }}</a>
-    </li>
-    <li class="max-lg:border-b max-lg:py-3">
-        <a href="{{ route('articles') }}"
-            class="block font-medium text-base hover:text-black text-black"
-            wire:navigate>{{ __('Berita') }}</a>
-    </li>
-    <li class="max-lg:border-b max-lg:py-3">
-        <a href="{{ route('about') }}"
-            class="block font-medium text-base hover:text-black text-black"
-            wire:navigate>{{ __('Tentang kami') }}</a>
-    </li>
-</ul>
+                        class="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+                        <li class="mb-6 hidden max-lg:block">
+                            <a href="{{ route('home') }}" class="font-bold">BUMDESmart</a>
+                        </li>
+                        <li class="max-lg:border-b max-lg:py-3">
+                            <a href="{{ route('home') }}"
+                                class="block font-medium text-base hover:text-black text-black"
+                                wire:navigate>{{ __('Home') }}</a>
+                        </li>
+                        <li class="max-lg:border-b max-lg:py-3">
+                            <a href="{{ route('product') }}"
+                                class="block font-medium text-base hover:text-black text-black"
+                                wire:navigate>{{ __('Produk') }}</a>
+                        </li>
+                        <li class="max-lg:border-b max-lg:py-3">
+                            <a href="{{ route('articles') }}"
+                                class="block font-medium text-base hover:text-black text-black"
+                                wire:navigate>{{ __('Berita') }}</a>
+                        </li>
+                        <li class="max-lg:border-b max-lg:py-3">
+                            <a href="{{ route('about') }}"
+                                class="block font-medium text-base hover:text-black text-black"
+                                wire:navigate>{{ __('Tentang kami') }}</a>
+                        </li>
+                    </ul>
 
                 </div>
 
@@ -69,7 +69,8 @@ new class extends Component {
                             <button @click="open = !open"
                                 class="flex items-center gap-x-2 px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50">
                                 <span>Hi, {{ auth()->user()->name }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                                    fill="currentColor">
                                     <path fill-rule="evenodd"
                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                         clip-rule="evenodd" />
@@ -86,15 +87,18 @@ new class extends Component {
                                 x-transition:leave-end="transform opacity-0 scale-95"
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-50"
                                 style="display: none;">
-                                
-                                <a href="{{ route('profile') }}" wire:navigate class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+
+                                <a href="{{ route('profile') }}" wire:navigate
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     Profile
                                 </a>
-                                <a href="{{ route('history') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <a href="{{ route('history') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     Transaksi Saya
                                 </a>
                                 <div class="border-t border-gray-100"></div>
-                                <button wire:click="logout" class="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                <button wire:click="logout"
+                                    class="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
                                     Logout
                                 </button>
                             </div>

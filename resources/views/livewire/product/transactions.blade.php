@@ -103,7 +103,7 @@
                                 <label for="quantity" class="font-medium">Jumlah:</label>
                                 <div class="flex items-center border border-gray-300 rounded-md bg-white">
                                     <button type="button" wire:click="decrementQuantity" class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-200 rounded-l-md">-</button>
-                                    <input type="text" id="quantity" value="{{ $quantity }}" readonly class="w-12 text-center border-0 font-semibold bg-transparent">
+                                    <input type="text" id="quantity" value="{{ $quantity }}"  class="w-12 text-center border-0 font-semibold bg-transparent">
                                     <button type="button" wire:click="incrementQuantity" class="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-200 rounded-r-md">+</button>
                                 </div>
                             </div>

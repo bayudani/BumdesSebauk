@@ -51,8 +51,8 @@ class TransactionResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('total_amount')
                     ->required()
-                    ->numeric()
-                    ->maxLength(20),
+                    ->numeric(),
+                    // ->maxLength(20),
                 Forms\Components\Select::make('transaction_status')
                     ->options([
                         'pending' => 'Pending',
@@ -83,53 +83,24 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                // Table columns for the Transaction resource
                 Tables\Columns\TextColumn::make('product.name')
                     ->label('Product Name')
                     ->sortable()
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('customer_name')
                     ->label('Customer Name')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('customer_address')
-                    ->label('Customer Address')
-                    ->limit(50)
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('customer_phone')
-                    ->label('Customer Phone')
-                    ->sortable()
-                    ->searchable(),
-                // Tables\Columns\TextColumn::make('product.category.name')
-                //     ->label('Category')
-                //     ->sortable()
-                //     ->searchable(),
-                // Tables\Columns\ImageColumn::make('product.image')
-                //     ->label('Product Image'),
-                Tables\Columns\TextColumn::make('quantity')
-                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('total_amount')
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('order_status')
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('transaction_status')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('transaction_date')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('payment_method')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('delivery_method')
-                    ->sortable(),
-                Tables\Columns\ImageColumn::make('proof_of_transaction')
-                    ->label('Bukti Transaksi')
-                    ->disk('public') // Tambahkan ini biar lebih eksplisit
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable(),
-
             ])
             ->filters([
                 // filter by product
@@ -141,14 +112,18 @@ class TransactionResource extends Resource
                     ->label('Transaction Date'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(), // ini untuk detail
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\Action::make('markAsCompleted')
-                    ->label('Mark as Completed')
+                    ->label('Konfirmasi pembayaran')
                     ->icon('heroicon-s-check-circle')
                     ->color('success')
+                    ->modalHeading('Konfirmasi Pembayaran')
+                    ->modalSubheading('Yakin ingin konfirmasi pembayaran ini? Tindakan ini tidak dapat dibatalkan.')
+                    ->modalButton('Ya, Konfirmasi')
                     ->requiresConfirmation()
-                    ->visible(fn($record) => $record->status !== 'completed') // tampil cuma kalau belum completed
+                    ->visible(fn($record) => $record->transaction_status !== 'completed') // tampil cuma kalau belum completed
                     ->action(function ($record) {
                         $record->update([
                             'transaction_status' => 'completed',

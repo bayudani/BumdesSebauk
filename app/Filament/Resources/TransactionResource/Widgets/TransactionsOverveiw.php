@@ -22,8 +22,20 @@ class TransactionsOverveiw extends BaseWidget
             )
                 ->description('Total nominal transaksi yang telah selesai')
                 ->descriptionIcon('heroicon-s-currency-dollar')
-                ->color('primary')
-                ->url(route('filament.admin.resources.transactions.index'))
+                ->color('primary'),
+                // ->url(route('filament.admin.resources.transactions.index')),
+
+            Stat::make('Total Transaksi', Transaction::count())
+                ->description('Jumlah Transaksi yang telah dilakukan')
+                ->descriptionIcon('heroicon-s-currency-dollar')
+                ->color('primary'),
+                // ->url(route('filament.admin.resources.blog.posts.index')),
+            
+            Stat::make('Transaksi Selesai', Transaction::where('transaction_status', 'completed')->count())
+                ->description('Jumlah Transaksi yang telah selesai')
+                ->descriptionIcon('heroicon-s-currency-dollar')
+                ->color('success')
+                // ->url(route('filament.admin.resources.blog.posts.index')),
 
         ];
     }
