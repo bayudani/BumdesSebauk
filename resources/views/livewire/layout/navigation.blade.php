@@ -76,7 +76,6 @@ new class extends Component {
                                         clip-rule="evenodd" />
                                 </svg>
                             </button>
-
                             <!-- Dropdown -->
                             <div x-show="open" @click.away="open = false"
                                 x-transition:enter="transition ease-out duration-100"
@@ -109,11 +108,10 @@ new class extends Component {
                             Login
                         </a>
                         <a href="{{ route('register') }}" wire:navigate
-                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-purple-600 bg-purple-600 hover:bg-purple-700">
+                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-purple-600 bg-green-500 hover:bg-green-700">
                             Sign up
                         </a>
                     @endauth
-
                     <!-- Menu Toggle (Mobile) -->
                     <button id="toggleOpen" class="lg:hidden cursor-pointer">
                         <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

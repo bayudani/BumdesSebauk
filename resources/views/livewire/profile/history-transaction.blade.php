@@ -1,5 +1,5 @@
 <div>
-    <div class="p-4">
+    <div class="p-4 bg-white">
         <div class="max-w-screen-xl mx-auto">
 
             @if (session()->has('message'))
@@ -92,7 +92,7 @@
                     <div class="text-center py-16">
                         <p class="text-slate-500">Anda belum memiliki riwayat transaksi.</p>
                         <a href="{{ route('product') }}" wire:navigate
-                            class="mt-4 inline-block text-[15px] font-medium px-6 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white tracking-wide">
+                            class="mt-4 inline-block text-[15px] font-medium px-6 py-2 rounded-md bg-green-500 hover:bg-green-700 text-white tracking-wide">
                             Mulai Belanja
                         </a>
                     </div>

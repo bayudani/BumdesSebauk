@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://713f104f5d6c.ngrok-free.app/'),
+    'url' => env('APP_URL', 'https://01fe14e38217.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +105,8 @@ return [
         ),
     ],
 
-    'asset_url' => env('ASSET_URL', 'http://127.0.0.1:8000/'),
+    
+    'asset_url' => env('ASSET_URL', 'https://01fe14e38217.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -124,5 +125,4 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
 ];
