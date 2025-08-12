@@ -108,7 +108,7 @@ new class extends Component {
                             Login
                         </a>
                         <a href="{{ route('register') }}" wire:navigate
-                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-purple-600 bg-green-500 hover:bg-green-700">
+                            class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-white border border-green-600 bg-green-500 hover:bg-green-700">
                             Sign up
                         </a>
                     @endauth

@@ -1,8 +1,8 @@
-<div>
+<div class="bg-white w-full">
     {{-- HEADER --}}
-    <section id="Header" class="max-w-[770px] w-full px-4 text-center mx-auto flex flex-col gap-y-4">
+    <section id="Header" class="max-w-[770px] w-full px-4 text-center mx-auto flex flex-col gap-y-4  bg-white pt-6">
         <p class="text-[#A3A6AE] text-sm sm:text-base">
-            {{ optional($post->published_at)->format('d M, Y') ?? '-' }} •
+            {{ optional($post->published_at)->format('d M, Y') ?? '-' }} 
             {{ $post->category->name ?? 'Uncategorized' }}
         </p>
         <h1 class="font-bold text-2xl sm:text-4xl lg:text-[46px] leading-snug sm:leading-[50px] lg:leading-[60px]">
@@ -11,7 +11,7 @@
         <div class="flex flex-col sm:flex-row items-center justify-center gap-y-4 sm:gap-x-[70px]">
             <div class="flex gap-3 items-center">
                 <div class="w-10 h-10 shrink-0 overflow-hidden flex justify-center items-center rounded-full">
-                    <img src="https://blocks.astratic.com/img/general-img-landscape.png"
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($post->author->photo) }}"
                         alt="image" class="object-cover w-full h-full" />
                 </div>
                 <div>
@@ -52,14 +52,14 @@
                     Other News You Might Be Interested
                 </h1>
                 <div class="max-h-[37px] max-w-[117px] rounded-full bg-[#FFECE1]">
-                    <p class="px-[18px] py-2 text-center text-xs sm:text-sm font-bold text-maga-orange">UP TO DATE</p>
+                    <p class="px-[18px] py-2 text-center text-xs sm:text-xs font-bold text-maga-orange">UP TO DATE</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-[30px] w-full">
                 @foreach ($otherArticles as $news)
                     <a href="{{ route('blog.show', $news->slug) }}">
                         <div
-                            class="flex bg-white flex-col gap-4 rounded-[20px] px-4 sm:px-5 py-[20px] sm:py-[26px] ring-1 ring-[#E8EBF4] transition-all duration-300 hover:ring-2 hover:ring-maga-orange">
+                            class="flex bg-white flex-col gap-4 rounded-[20px] px-4 sm:px-5 py-[20px] sm:py-[26px] ring-1 ring-[#E8EBF4] transition-all duration-300 hover:ring-2 hover:ring-green-500">
                             <div class="relative flex">
                                 <div
                                     class="absolute left-4 sm:left-5 top-4 sm:top-5 flex max-h-[34px] w-fit items-center justify-center rounded-full bg-white px-[14px] sm:px-[18px] py-1.5 sm:py-2">

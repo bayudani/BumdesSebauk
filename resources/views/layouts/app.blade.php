@@ -24,7 +24,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100 flex flex-col">
         <livewire:layout.navigation />
 
         <!-- Page Heading -->
@@ -37,11 +37,11 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class="flex-grow">
             {{ $slot }}
         </main>
 
-        <footer>
+        <footer class="bottom-0 left-0 w-full bg-white shadow-md">
             <livewire:layout.footer />
         </footer>
     </div>
