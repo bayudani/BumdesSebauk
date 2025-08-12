@@ -67,6 +67,15 @@ class Transactions extends Component
      */
     public function save()
     {
+
+        if (!Auth::check()) {
+        // Simpan pesan untuk ditampilkan setelah redirect
+        session()->flash('error', 'Silakan login atau daftar terlebih dahulu untuk melanjutkan pesanan.');
+        
+        // Redirect ke halaman login. Laravel akan otomatis mengingat halaman checkout ini
+        // dan akan kembali ke sini setelah user berhasil login.
+        return redirect()->guest(route('login'));
+    }
         // Validasi semua input dari form
         $this->validate([
             'customer_name' => 'required|string|max:255',
