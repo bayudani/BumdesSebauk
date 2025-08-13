@@ -2,14 +2,14 @@
     <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Visi & Misi</h2>
 
-        {{-- Ketua --}}
-        @if ($ketua)
+        {{-- kepalaDesa --}}
+        @if ($kepalaDesa)
             <div class="flex flex-col items-center mb-12">
-                <img src="{{ $ketua->photo ? Storage::url($ketua->photo) : asset('assets/images/default-avatar.png') }}"
-                     alt="{{ $ketua->name }}"
-                     class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                <h3 class="text-2xl font-semibold">{{ $ketua->name }}</h3>
-                <p class="text-blue-600 font-medium text-lg mb-4">{{ $ketua->position }}</p>
+                <img src="{{ $kepalaDesa->photo ? Storage::url($kepalaDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                    alt="{{ $kepalaDesa->name }}"
+                    class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                <h3 class="text-2xl font-semibold">{{ $kepalaDesa->name }}</h3>
+                <p class="text-blue-600 font-medium text-lg mb-4">{{ $kepalaDesa->position }}</p>
 
                 <div class="text-center">
                     <h4 class="text-xl font-semibold mb-2">Visi</h4>
@@ -29,14 +29,14 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
 
-            {{-- Sekretaris --}}
-            @if ($sekretaris)
+            {{-- SekretarisDesa --}}
+            @if ($sekretarisDesa)
                 <div class="flex flex-col items-center">
-                    <img src="{{ $sekretaris->photo ? Storage::url($sekretaris->photo) : asset('assets/images/default-avatar.png') }}"
-                         alt="{{ $sekretaris->name }}"
-                         class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                    <h3 class="text-2xl font-semibold">{{ $sekretaris->name }}</h3>
-                    <p class="text-blue-600 font-medium text-lg mb-4">{{ $sekretaris->position }}</p>
+                    <img src="{{ $sekretarisDesa->photo ? Storage::url($sekretarisDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                        alt="{{ $sekretarisDesa->name }}"
+                        class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                    <h3 class="text-2xl font-semibold">{{ $sekretarisDesa->name }}</h3>
+                    <p class="text-blue-600 font-medium text-lg mb-4">{{ $sekretarisDesa->position }}</p>
 
                     <div class="text-center">
                         <h4 class="text-xl font-semibold mb-2">Visi</h4>
@@ -54,14 +54,14 @@
                 </div>
             @endif
 
-            {{-- Bendahara --}}
-            @if ($bendahara)
+            {{-- BendaharaDesa --}}
+            @if ($bendaharaDesa)
                 <div class="flex flex-col items-center">
-                    <img src="{{ $bendahara->photo ? Storage::url($bendahara->photo) : asset('assets/images/default-avatar.png') }}"
-                         alt="{{ $bendahara->name }}"
-                         class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                    <h3 class="text-2xl font-semibold">{{ $bendahara->name }}</h3>
-                    <p class="text-blue-600 font-medium text-lg mb-4">{{ $bendahara->position }}</p>
+                    <img src="{{ $bendaharaDesa->photo ? Storage::url($bendaharaDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                        alt="{{ $bendaharaDesa->name }}"
+                        class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                    <h3 class="text-2xl font-semibold">{{ $bendaharaDesa->name }}</h3>
+                    <p class="text-blue-600 font-medium text-lg mb-4">{{ $bendaharaDesa->position }}</p>
 
                     <div class="text-center">
                         <h4 class="text-xl font-semibold mb-2">Visi</h4>

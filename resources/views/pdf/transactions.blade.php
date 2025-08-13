@@ -68,7 +68,7 @@
             <td class="company-details">
                 <h1>BUMDes Sejahtera</h1>
                 <p>Jln. Utama Desa Sebauk, Kecamatan Bengkalis, Kabupaten Bengkalis</p>
-                <p>Email: bumdes.sejahtera@example.com | Telp: (021) 123-4567</p>
+                <p>Email: bumdes.sejahtera@example.com | Telp: (62) 8123-4567</p>
             </td>
             <td style="width: 15%;"></td>
         </tr>
