@@ -8,4 +8,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Tambahkan bagian ini
+    // server: {
+    //     host: '0.0.0.0',
+    //     hmr: {
+    //         host: 'localhost',
+    //     },
+    // },
 });

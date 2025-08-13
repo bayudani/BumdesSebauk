@@ -7,8 +7,17 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/**/*.js',
         './app/Livewire/**/*.php', // Dan ini juga penting buat komponen PHP
 
+    ],
+    safelist: [
+        'bg-green-500',
+        'bg-green-600',
+        'bg-green-700',
+        'bg-red-500',
+        'text-green-700',
+        // Tambahkan semua class warna atau style lain yang hilang di sini
     ],
 
     theme: {

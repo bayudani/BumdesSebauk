@@ -90,8 +90,14 @@
                                     class="font-semibold">{{ $product->stok }}</span></p>
 
                             @php
-                                // Siapkan nomor admin dan pesan default
-                                $adminPhoneNumber = '62895385526493'; // GANTI DENGAN NOMOR ADMIN (awali dengan 62)
+                                // Siapkan nomor fallback untuk mencegah error jika DB kosong
+                                $adminPhoneNumber = '6281234567890'; // GANTI DENGAN NOMOR FALLBACK
+
+                                // Jika data kontak dari komponen ada, gunakan nomor tersebut
+                                if ($adminContact && $adminContact->no_hp) {
+                                    $adminPhoneNumber = $adminContact->no_hp;
+                                }
+
                                 $productUrl = route('checkout', $product->id);
                                 $message = "Halo Admin, saya tertarik dengan produk '{$product->name}'. Apakah masih tersedia?\n\nLink Produk: {$productUrl}";
                                 $whatsappUrl =
@@ -102,7 +108,7 @@
                             @endphp
 
                             <a href="{{ $whatsappUrl }}" target="_blank"
-                                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition">
+                                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-black bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM2 10a8 8 0 1116 0 8 8 0 01-16 0z"

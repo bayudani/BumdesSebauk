@@ -59,7 +59,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
                 RoleMiddleware::class . ':admin_operational', // Batasi akses ke admin saja
-
             ]);
     }
 }
