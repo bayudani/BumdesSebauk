@@ -2,34 +2,40 @@
     <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Struktur Bumdes</h2>
 
-        <!-- Kepala Desa -->
-        <div class="flex flex-col items-center mb-12">
-            <img src="assets/images/about bumdes.png" 
-                 alt="Kepala Desa" 
-                 class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-            <h3 class="text-2xl font-semibold">Budi Santoso</h3>
-            <p class="text-blue-600 font-medium text-lg">Kepala Desa</p>
-        </div>
+        {{-- Cek apakah data kepala desa ada --}}
+        @if ($kepalaDesa)
+            <div class="flex flex-col items-center mb-12">
+                {{-- Gunakan foto dari database, jika tidak ada, pakai foto default --}}
+                <img src="{{ $kepalaDesa->photo ? Storage::url($kepalaDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                    alt="{{ $kepalaDesa->name }}"
+                    class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                <h3 class="text-2xl font-semibold">{{ $kepalaDesa->name }}</h3>
+                <p class="text-blue-600 font-medium text-lg">{{ $kepalaDesa->position }}</p>
+            </div>
+        @endif
 
-        <!-- Dua orang sejajar -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
-            <!-- Sekretaris Desa -->
-            <div class="flex flex-col items-center">
-                <img src="assets/images/about bumdes.png" 
-                     alt="Sekretaris Desa" 
-                     class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                <h3 class="text-2xl font-semibold">Siti Aminah</h3>
-                <p class="text-blue-600 font-medium text-lg">Sekretaris Desa</p>
-            </div>
 
-            <!-- Bendahara Desa -->
-            <div class="flex flex-col items-center">
-                <img src="assets/images/about bumdes.png" 
-                     alt="Bendahara Desa" 
-                     class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                <h3 class="text-2xl font-semibold">Ahmad Fauzi</h3>
-                <p class="text-blue-600 font-medium text-lg">Bendahara Desa</p>
-            </div>
+            @if ($sekretarisDesa)
+                <div class="flex flex-col items-center">
+                    <img src="{{ $sekretarisDesa->photo ? Storage::url($sekretarisDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                        alt="{{ $sekretarisDesa->name }}"
+                        class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                    <h3 class="text-2xl font-semibold">{{ $sekretarisDesa->name }}</h3>
+                    <p class="text-blue-600 font-medium text-lg">{{ $sekretarisDesa->position }}</p>
+                </div>
+            @endif
+
+            @if ($bendaharaDesa)
+                <div class="flex flex-col items-center">
+                    <img src="{{ $bendaharaDesa->photo ? Storage::url($bendaharaDesa->photo) : asset('assets/images/default-avatar.png') }}"
+                        alt="{{ $bendaharaDesa->name }}"
+                        class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                    <h3 class="text-2xl font-semibold">{{ $bendaharaDesa->name }}</h3>
+                    <p class="text-blue-600 font-medium text-lg">{{ $bendaharaDesa->position }}</p>
+                </div>
+            @endif
+
         </div>
     </div>
 </section>

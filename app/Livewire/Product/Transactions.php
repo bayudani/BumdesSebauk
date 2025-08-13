@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\Contact;
 
 #[Layout('layouts.app')]
 class Transactions extends Component
@@ -20,6 +21,8 @@ class Transactions extends Component
 
     // Properti untuk menampung data produk
     public ProductModel $product;
+    public $adminContact; 
+
 
     // Properti untuk menampung input dari form
     public $quantity = 1;
@@ -40,6 +43,7 @@ class Transactions extends Component
             $user = Auth::user();
             $this->customer_name = $user->name;
         }
+        $this->adminContact = Contact::first();
     }
 
     /**

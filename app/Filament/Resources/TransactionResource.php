@@ -83,6 +83,13 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
+
+                //  id 
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction ID'),
+                    
                 Tables\Columns\TextColumn::make('product.name')
                     ->label('Product Name')
                     ->sortable()
@@ -101,6 +108,11 @@ class TransactionResource extends Resource
 
                 Tables\Columns\TextColumn::make('transaction_status')
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->label('Transaction Date'),
             ])
             ->filters([
                 // filter by product
@@ -149,7 +161,7 @@ class TransactionResource extends Resource
     {
         return [
             'index' => Pages\ListTransactions::route('/'),
-            'create' => Pages\CreateTransaction::route('/create'),
+            // 'create' => Pages\CreateTransaction::route('/create'),
             'edit' => Pages\EditTransaction::route('/{record}/edit'),
         ];
     }
