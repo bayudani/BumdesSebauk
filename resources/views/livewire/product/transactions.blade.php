@@ -251,18 +251,17 @@
                             </div>
                         </div>
                         @auth
-                        <button type="submit"
-                            class="w-full mt-6 py-3 text-lg font-medium bg-green-500 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50"
-                            wire:loading.attr="disabled">
-                            <span wire:loading.remove wire:target="save">Konfirmasi & Buat Pesanan</span>
-                            <span wire:loading wire:target="save">Memproses...</span>
-                        </button>
+                            <button type="submit"
+                                class="w-full mt-6 py-3 text-lg font-medium bg-green-500 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50"
+                                wire:loading.attr="disabled">
+                                <span wire:loading.remove wire:target="save">Konfirmasi & Buat Pesanan</span>
+                                <span wire:loading wire:target="save">Memproses...</span>
+                            </button>
                         @else
-                        <button type="button"
-                            class="w-full mt-6 py-3 text-lg font-medium bg-gray-300 text-gray-500 rounded-md cursor-not-allowed"
-                            disabled>
-                            Silakan login atau daftar terlebih dahulu
-                        </button>
+                            <a href="{{ route('login') }}" wire:navigate
+                                class="block text-center w-full mt-6 py-3 text-lg font-medium bg-gray-300 text-gray-500 rounded-md cursor-not-allowed transition">
+                                Login untuk Melanjutkan Pesanan
+                            </a>
                         @endauth
                     </div>
                 </div>
