@@ -86,6 +86,7 @@
                 <th>Total Bayar</th>
                 <th>Status Pesanan</th>
                 <th>Status Bayar</th>
+                <th>Status order</th>
                 <th>Tanggal</th>
             </tr>
         </thead>
@@ -98,6 +99,7 @@
                     <td>Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</td>
                     <td>{{ ucfirst($transaction->order_status) }}</td>
                     <td>{{ ucfirst($transaction->transaction_status) }}</td>
+                    <td>{{ ucfirst($transaction->order_status) }}</td>
                     <td>{{ $transaction->created_at->format('d M Y H:i') }}</td>
                 </tr>
             @empty
