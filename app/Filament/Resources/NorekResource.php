@@ -19,7 +19,7 @@ class NorekResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Operasional';
-    
+
 
     public static function form(Form $form): Form
     {
@@ -30,7 +30,7 @@ class NorekResource extends Resource
                     ->required()
                     ->maxLength(255),
                 // no_rekening
-                Forms\Components\TextInput::make('no_rekening')
+                Forms\Components\TextInput::make('norek')
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
