@@ -7,6 +7,7 @@ use Stephenjude\FilamentBlog\Models\Post;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Str;
 
+
 /**
  * This component uses the layout file at `resources/views/layouts/app.blade.php`.
  * Make sure that file exists and includes your CSS/JS assets and a `{{ $slot }}` placeholder.

@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransactionResource extends Resource
 {
@@ -52,7 +53,7 @@ class TransactionResource extends Resource
                 Forms\Components\TextInput::make('total_amount')
                     ->required()
                     ->numeric(),
-                    // ->maxLength(20),
+                // ->maxLength(20),
                 Forms\Components\Select::make('transaction_status')
                     ->options([
                         'pending' => 'Pending',
@@ -89,7 +90,7 @@ class TransactionResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Transaction ID'),
-                    
+
                 Tables\Columns\TextColumn::make('product.name')
                     ->label('Product Name')
                     ->sortable()
@@ -115,13 +116,53 @@ class TransactionResource extends Resource
                     ->label('Transaction Date'),
             ])
             ->filters([
-                // filter by product
                 Tables\Filters\SelectFilter::make('product')
                     ->relationship('product', 'name')
-                    ->multiple(),
-                // by date
-                Tables\Filters\SelectFilter::make('transaction_date')
-                    ->label('Transaction Date'),
+                    ->multiple()
+                    ->preload(), // Pro-tip: Tambah preload biar loadingnya cepet
+
+                // Filter tanggal yang baru dan lebih powerful
+                Tables\Filters\Filter::make('created_at')
+                    ->label('Rentang Waktu Transaksi')
+                    ->form([
+                        Forms\Components\Select::make('range')
+                            ->label('Pilih Rentang')
+                            ->options([
+                                'today' => 'Hari Ini',
+                                'this_week' => 'Minggu Ini',
+                                'this_month' => 'Bulan Ini',
+                                'this_year' => 'Tahun Ini',
+                            ])
+                            ->placeholder('Semua Waktu'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        // Fungsi ini akan mengubah query database berdasarkan pilihan user
+                        return $query->when(
+                            $data['range'], // Hanya jalankan jika user memilih salah satu opsi
+                            function (Builder $query, $range) {
+                                match ($range) {
+                                    'today' => $query->whereDate('created_at', today()),
+                                    'this_week' => $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]),
+                                    'this_month' => $query->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year),
+                                    'this_year' => $query->whereYear('created_at', now()->year),
+                                    default => $query,
+                                };
+                            }
+                        );
+                    })
+                    ->indicator(function (array $data): ?string {
+                        // Ini untuk menampilkan label filter yang aktif di atas tabel
+                        if (! $data['range']) {
+                            return null;
+                        }
+                        return 'Rentang: ' . match ($data['range']) {
+                            'today' => 'Hari Ini',
+                            'this_week' => 'Minggu Ini',
+                            'this_month' => 'Bulan Ini',
+                            'this_year' => 'Tahun Ini',
+                            default => 'Semua Waktu',
+                        };
+                    }),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(), // ini untuk detail

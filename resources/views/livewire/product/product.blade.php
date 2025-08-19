@@ -16,7 +16,7 @@
             <div class="mb-10">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">{{ ucfirst($categoryName) }}</h2>
-                    <a href="#" class="text-sm text-blue-600 hover:underline">Lihat Semua</a>
+                    {{-- <a href="#" class="text-sm text-blue-600 hover:underline">Lihat Semua</a> --}}
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach ($items as $product)

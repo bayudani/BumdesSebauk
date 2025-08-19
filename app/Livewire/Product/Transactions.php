@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Models\Contact;
+use App\Models\norek; // 1. Import the 'norek' model
+
 
 #[Layout('layouts.app')]
 class Transactions extends Component
@@ -22,7 +24,10 @@ class Transactions extends Component
     // Properti untuk menampung data produk
     public ProductModel $product;
     public $adminContact; 
+public $bankAccounts = []; // 2. Add a new property for bank accounts
 
+    // ... (other properties)
+    // public $payment_method = ''; // 3. Set the default payment method to empty
 
     // Properti untuk menampung input dari form
     public $quantity = 1;
@@ -44,6 +49,14 @@ class Transactions extends Component
             $this->customer_name = $user->name;
         }
         $this->adminContact = Contact::first();
+
+        // 4. Fetch all bank accounts from the database
+        $this->bankAccounts = norek::all();
+
+        // // 5. Set the default payment method to the first bank's name
+        // if ($this->bankAccounts->isNotEmpty()) {
+        //     $this->payment_method = $this->bankAccounts->first()->nama_bank;
+        // }
     }
 
     /**

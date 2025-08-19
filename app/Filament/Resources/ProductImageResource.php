@@ -47,7 +47,8 @@ class ProductImageResource extends Resource
                     ->disk('public')
                     ->directory('product-media')
                     ->required()
-                    ->visible(fn(Get $get) => $get('media_type') === 'image'),
+                    ->visible(fn(Get $get) => $get('media_type') === 'image')
+                    ->maxSize(2048), // Batasan ukuran gambar,
 
                 // Field untuk upload video, hanya muncul jika media_type = 'video'
                 Forms\Components\FileUpload::make('image') // Tetap 'image' karena nama kolomnya sama
@@ -56,6 +57,7 @@ class ProductImageResource extends Resource
                     ->directory('product-media')
                     ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/webm'])
                     ->required()
+                    ->maxSize(10240) // Batasan ukuran video, misalnya 10MB
                     ->visible(fn(Get $get) => $get('media_type') === 'video'),
             ]);
     }

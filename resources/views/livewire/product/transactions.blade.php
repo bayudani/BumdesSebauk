@@ -221,26 +221,22 @@
                             <h3 class="text-lg font-semibold text-slate-900">Pembayaran</h3>
                             <p class="text-slate-500 text-sm mt-2">Silakan transfer ke rekening tujuan, lalu upload
                                 bukti.</p>
-                            <div class="flex flex-col gap-3 mt-4">
-                                <label
-                                    class="flex items-center p-3 border bg-white rounded-lg cursor-pointer has-[:checked]:border-green-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
-                                    <input type="radio" wire:model="payment_method" value="BCA"
-                                        class="w-5 h-5">
-                                    <div class="ml-3">
-                                        <p class="font-semibold text-slate-900">Bank BCA</p>
-                                        <p class="text-sm text-slate-600">1234567890 a.n BUMDes Sebauk</p>
-                                    </div>
-                                </label>
-                                <label
-                                    class="flex items-center p-3 border bg-white rounded-lg cursor-pointer has-[:checked]:border-green-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
-                                    <input type="radio" wire:model="payment_method" value="Mandiri"
-                                        class="w-5 h-5">
-                                    <div class="ml-3">
-                                        <p class="font-semibold text-slate-900">Bank Mandiri</p>
-                                        <p class="text-sm text-slate-600">0987654321 a.n BUMDes Sebauk</p>
-                                    </div>
-                                </label>
-                            </div>
+                            {{-- This is the new dynamic part --}}
+            <div class="flex flex-col gap-3 mt-4">
+                @forelse ($bankAccounts as $bank)
+                    <label
+                        class="flex items-center p-3 border bg-white rounded-lg cursor-pointer has-[:checked]:border-green-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
+                        <input type="radio" wire:model="payment_method" value="{{ $bank->nama_bank }}"
+                            class="w-5 h-5">
+                        <div class="ml-3">
+                            <p class="font-semibold text-slate-900">Bank {{ $bank->nama_bank }}</p>
+                            <p class="text-sm text-slate-600">{{ $bank->norek }} <span class="ml-2">a.n</span><span class="ml-2"> {{ $bank->atas_nama }}</span> </p>
+                        </div>
+                    </label>
+                @empty
+                    <p class="text-sm text-slate-500">Tidak ada metode pembayaran yang tersedia saat ini.</p>
+                @endforelse
+            </div>
                             @error('payment_method')
                                 <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                             @enderror
