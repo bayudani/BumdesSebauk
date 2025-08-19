@@ -229,8 +229,8 @@
                         <input type="radio" wire:model="payment_method" value="{{ $bank->nama_bank }}"
                             class="w-5 h-5">
                         <div class="ml-3">
-                            <p class="font-semibold text-slate-900">{{ $bank->nama_bank }}</p>
-                            <p class="text-sm text-slate-600">{{ $bank->norek }} a.n {{ $bank->atas_nama }}</p>
+                            <p class="font-semibold text-slate-900">Bank {{ $bank->nama_bank }}</p>
+                            <p class="text-sm text-slate-600">{{ $bank->norek }} <span class="ml-2">a.n</span><span class="ml-2"> {{ $bank->atas_nama }}</span> </p>
                         </div>
                     </label>
                 @empty
