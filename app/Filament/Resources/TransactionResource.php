@@ -86,10 +86,10 @@ class TransactionResource extends Resource
             ->columns([
 
                 //  id 
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\TextColumn::make('transaction_code')
                     ->sortable()
                     ->searchable()
-                    ->label('Transaction ID'),
+                    ->label('Kode Transaksi'),
 
                 Tables\Columns\TextColumn::make('product.name')
                     ->label('Product Name')
@@ -163,6 +163,15 @@ class TransactionResource extends Resource
                             default => 'Semua Waktu',
                         };
                     }),
+
+                    // filter status pembayaran
+                Tables\Filters\SelectFilter::make('transaction_status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->placeholder('Semua Status'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(), // ini untuk detail

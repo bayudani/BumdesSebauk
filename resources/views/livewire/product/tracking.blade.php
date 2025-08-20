@@ -29,7 +29,7 @@
                         <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Detail Pesanan</h1>
                         <p class="text-slate-500 mt-2">ID Transaksi:
                             <span
-                                class="font-semibold text-purple-600 bg-purple-100 py-1 px-2 rounded-md">{{ $transaction->id }}</span>
+                                class="font-semibold text-purple-600 bg-purple-100 py-1 px-2 rounded-md">{{ $transaction->transaction_code }}</span>
                         </p>
                     </div>
 
@@ -120,7 +120,11 @@
                                         @endif
                                     </span>
                                     <h4 class="mb-1 text-[15px] font-semibold text-slate-900">Selesai</h4>
-                                    <p class="text-sm text-slate-600">Pesanan telah diterima</p>
+                                    @if ($transaction->delivery_method == 'pickup')
+                                        <p class="text-sm text-slate-600">Pesanan telah diambil</p>
+                                    @else
+                                        <p class="text-sm text-slate-600">Pesanan telah diterima</p>
+                                    @endif
                                 </li>
                             </ol>
                         @endif

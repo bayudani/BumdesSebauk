@@ -20,10 +20,10 @@
                     <div class="absolute flex flex-col md:flex-row bottom-0 left-0 right-0 items-start md:items-center justify-between mx-auto max-w-[1280px] px-4 md:px-[75px] pb-[20px] md:pb-[40px]">
                         <div class="flex flex-col gap-[10px] text-white">
                             <div class="w-full md:w-[507px]">
-                                <a href="#" 
+                                <p  
                                    class="font-bold text-[20px] md:text-[36px] leading-[28px] md:leading-[45px] hover:underline transition-all duration-300">
                                    Selamat Datang di Website Resmi BUMDes Sebauk
-                                </a>
+                                </p>
                             </div>
                             {{-- <p class="text-sm md:text-base">Business</p> --}}
                         </div>

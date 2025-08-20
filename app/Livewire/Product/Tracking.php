@@ -12,7 +12,7 @@ use Livewire\Attributes\Layout;
 class Tracking extends Component
 {
 
-      public ?Transaction $transaction = null; // Inisialisasi sebagai null
+    public ?Transaction $transaction = null; // Inisialisasi sebagai null
     public $transactionId = '';
     public $searched = false; // Penanda apakah pencarian sudah dilakukan
 
@@ -20,11 +20,11 @@ class Tracking extends Component
      * Cari transaksi saat komponen di-mount, jika ada ID di URL.
      * Route-nya bisa seperti: Route::get('/lacak/{id?}', Tracking::class);
      */
-   public function mount($id = null)
+    public function mount($transacion_code = null)
     {
         // Jika ada ID di URL (misal: /track/uuid-123), langsung cari transaksinya.
-        if ($id) {
-            $this->transactionId = $id;
+        if ($transacion_code) {
+            $this->transactionId = $transacion_code;
             $this->findTransaction();
         }
         // Jika tidak ada ID (misal: /track), method ini tidak melakukan apa-apa,
@@ -38,11 +38,14 @@ class Tracking extends Component
     public function findTransaction()
     {
         // Validasi sederhana, pastikan ID tidak kosong
-        $this->validate(['transactionId' => 'required']);
-        
-        // Cari transaksi beserta relasi produknya
-        $this->transaction = Transaction::with('product')->find($this->transactionId);
-        
+        $this->validate(['transactionId' => 'required|string']);
+
+        $this->transaction = Transaction::with('product')
+            ->where('transaction_code', $this->transactionId)
+            ->first();
+
+        $this->searched = true;
+
         // Tandai bahwa pencarian sudah dilakukan
         $this->searched = true;
     }

@@ -126,9 +126,11 @@ public $bankAccounts = []; // 2. Add a new property for bank accounts
                 $path = $this->proof_of_transaction->store('proofs', 'public');
 
                 // Buat record transaksi baru dan simpan instance-nya ke variabel
-                // ID akan di-generate otomatis oleh model (UUID)
+                // generate transction_code dengan format "INV-tanggal&jam"
+                $transactionCode = 'INV-' . now()->format('YmdHis');
                 $newTransaction = Transaction::create([
                     'user_id' => Auth::id(), // Ambil ID user yang sedang login
+                    'transaction_code' => $transactionCode,
                     'product_id' => $this->product->id,
                     'customer_name' => $this->customer_name,
                     'customer_address' => $this->customer_address,
@@ -151,7 +153,7 @@ public $bankAccounts = []; // 2. Add a new property for bank accounts
             if ($newTransaction) {
                 session()->flash('message', 'Transaksi berhasil! Simpan ID Transaksi Anda untuk melacak pesanan.');
                 // Redirect ke route 'tracking' dengan membawa ID transaksi (UUID)
-                return redirect()->route('tracking', ['id' => $newTransaction->id]);
+                return redirect()->route('tracking', ['id' => $newTransaction->transaction_code]);
             }
         } catch (\Exception $e) {
             // Jika terjadi error, tampilkan pesan kesalahan

@@ -7,22 +7,23 @@ use Illuminate\Support\Str;
 
 class Transaction extends Model
 {
-    public $incrementing = false; // UUID bukan auto-increment
-    protected $keyType = 'string'; // UUID berupa string
+    // public $incrementing = false; // UUID bukan auto-increment
+    // protected $keyType = 'string'; // UUID berupa string
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = Str::uuid()->toString();
-            }
-        });
-    }
+    //     static::creating(function ($model) {
+    //         if (!$model->getKey()) {
+    //             $model->{$model->getKeyName()} = Str::uuid()->toString();
+    //         }
+    //     });
+    // }
 
     protected $fillable = [
         'user_id',
+        'transaction_code',
         'product_id',
         'customer_name',
         'customer_address',

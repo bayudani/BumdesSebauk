@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://4a30972bb843.ngrok-free.app/'),
+    'url' => env('APP_URL', 'https://aff75865c1b5.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     ],
 
 
-    'asset_url' => env('ASSET_URL', 'https://4a30972bb843.ngrok-free.app/'),
+    'asset_url' => env('ASSET_URL', 'https://aff75865c1b5.ngrok-free.app/'),
 
     /*
     |--------------------------------------------------------------------------
