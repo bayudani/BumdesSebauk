@@ -34,7 +34,7 @@ class HistoryTransaction extends Component
                 ]);
 
                 // Kirim pesan sukses
-                session()->flash('message', 'Pesanan #' . $transaction->id . ' telah ditandai selesai!');
+                session()->flash('message', 'Pesanan #' . $transaction->transaction_code . ' telah ditandai selesai!');
             }
         }
     }

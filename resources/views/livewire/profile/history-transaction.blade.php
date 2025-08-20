@@ -33,7 +33,7 @@
                             <h6 class="text-[15px] font-medium text-slate-900">{{ $transaction->product->name }}</h6>
                             <div class="mt-2">
                                 <p class="text-[15px] text-slate-500 font-medium">Order ID:
-                                    <span class="ml-1 text-slate-900">#{{ substr($transaction->id, 0, 8) }}...</span>
+                                    <span class="ml-1 text-slate-900">#{{ substr($transaction->transaction_code, 0, 8) }}...</span>
                                 </p>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                 </button>
                             @endif
 
-                            <a href="{{ route('tracking', ['id' => $transaction->id]) }}" wire:navigate
+                            <a href="{{ route('tracking', ['id' => $transaction->transaction_code]) }}" wire:navigate
                                 class="text-center text-[15px] font-medium px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200 text-slate-900 tracking-wide cursor-pointer w-full md:w-auto">
                                 Lihat Detail
                             </a>
