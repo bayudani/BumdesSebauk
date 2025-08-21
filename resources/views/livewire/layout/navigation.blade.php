@@ -16,7 +16,7 @@ new class extends Component {
 }; ?>
 
 <div class="sticky top-0 z-50">
-    <header class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50 sticky top-0">
+    <header class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50">
         <div class="flex flex-wrap items-center justify-between gap-5 w-full">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="max-sm:hidden">
@@ -31,13 +31,25 @@ new class extends Component {
                 <div id="collapseMenu"
                     class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50">
 
-
                     <!-- Navigation Links -->
                     <ul
                         class="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+
+                        {{-- [FIX] Header menu mobile dengan tombol close --}}
                         <li class="mb-6 hidden max-lg:block">
-                            <a href="{{ route('home') }}" class="font-bold">BUMDESmart</a>
+                            <div class="flex justify-between items-center">
+                                <a href="{{ route('home') }}" class="font-bold">BUMDESmart</a>
+                                <button id="toggleClose" class="cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="#000"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                            fill-rule="evenodd" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
                         </li>
+
                         <li class="max-lg:border-b max-lg:py-3">
                             <a href="{{ route('home') }}"
                                 class="block font-medium text-base hover:text-black text-black"
@@ -59,7 +71,6 @@ new class extends Component {
                                 wire:navigate>{{ __('Tentang kami') }}</a>
                         </li>
                     </ul>
-
                 </div>
 
                 <!-- Auth Buttons -->
@@ -125,13 +136,18 @@ new class extends Component {
         </div>
     </header>
 
+    {{-- Script JS tidak perlu diubah --}}
     <script>
         var toggleOpen = document.getElementById('toggleOpen');
         var toggleClose = document.getElementById('toggleClose');
         var collapseMenu = document.getElementById('collapseMenu');
 
         function handleClick() {
-            collapseMenu.style.display = (collapseMenu.style.display === 'block') ? 'none' : 'block';
+            if (collapseMenu.style.display === 'block') {
+                collapseMenu.style.display = 'none';
+            } else {
+                collapseMenu.style.display = 'block';
+            }
         }
 
         toggleOpen.addEventListener('click', handleClick);

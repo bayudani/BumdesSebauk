@@ -20,11 +20,11 @@ class Tracking extends Component
      * Cari transaksi saat komponen di-mount, jika ada ID di URL.
      * Route-nya bisa seperti: Route::get('/lacak/{id?}', Tracking::class);
      */
-    public function mount($transacion_code = null)
+    public function mount($id = null)
     {
         // Jika ada ID di URL (misal: /track/uuid-123), langsung cari transaksinya.
-        if ($transacion_code) {
-            $this->transactionId = $transacion_code;
+        if ($id) {
+            $this->transactionId = $id;
             $this->findTransaction();
         }
         // Jika tidak ada ID (misal: /track), method ini tidak melakukan apa-apa,
