@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://5768b85720ee.ngrok-free.app/'),
+    'url' => env('APP_URL', 'https://bumdesmart.sebauk.com//'),
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     ],
 
 
-    'asset_url' => env('ASSET_URL', 'https://5768b85720ee.ngrok-free.app/'),
+    'asset_url' => env('ASSET_URL', 'https://bumdesmart.sebauk.com//'),
 
     /*
     |--------------------------------------------------------------------------
